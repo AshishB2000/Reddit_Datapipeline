@@ -3,18 +3,18 @@
 ## About
 This project implements a streamlined data pipeline to gather, process, and analyze posts from the "AAPL" subreddit on Reddit. Leveraging the PRAW library for Reddit API access, the pipeline retrieves posts and associated metadata, which are then securely stored in an Amazon S3 bucket. Using Snowflake for data transformation, the raw Reddit data is structured and loaded into a data warehouse, enabling efficient querying and analysis. Apache Airflow orchestrates the workflow, triggering daily updates to ensure data freshness and reliability. This pipeline provides stakeholders with timely insights into discussions surrounding Apple Inc., facilitating informed decision-making and strategic planning.
 ## Table of Contents
-- [System Architecture](#system-architecture)
+- [Project Components](#Project Components)
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
 - [Running the Code With Docker](#running-the-code-with-docker)
 
-## System Architecture
--Exreacting data from Reddit using API
--Using Apache Airflow as Orchestrater the ETL process.
--Using PostgreSQL as Temporary storage and metadata management.
--AWS S3 Bucket for storing data.
--Snowflake for data transformation and Data warehousing.
+### Project Components:
 
+- Extracting data from Reddit using API
+- Using Apache Airflow as the orchestrator for the ETL process.
+- Utilizing PostgreSQL for temporary storage and metadata management.
+- Leveraging AWS S3 Bucket for storing data.
+- Employing Snowflake for data transformation and Data warehousing.
 
 
 ## Requirements
