@@ -9,11 +9,11 @@ This project implements a streamlined data pipeline to gather, process, and anal
 - [Running the Code With Docker](#running-the-code-with-docker)
 
 ## System Architecture
-1.Exreacting data from Reddit using API
-2.Using Apache Airflow as Orchestrater the ETL process.
-3.Using PostgreSQL as Temporary storage and metadata management.
-3.AWS S3 Bucket for storing data.
-4.Snowflake for data transformation and Data warehousing.
+-Exreacting data from Reddit using API
+-Using Apache Airflow as Orchestrater the ETL process.
+-Using PostgreSQL as Temporary storage and metadata management.
+-AWS S3 Bucket for storing data.
+-Snowflake for data transformation and Data warehousing.
 
 
 
