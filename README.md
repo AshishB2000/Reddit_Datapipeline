@@ -14,9 +14,8 @@ This project implements a streamlined data pipeline to gather, process, and anal
 3.Using PostgreSQL as Temporary storage and metadata management.
 3.AWS S3 Bucket for storing data.
 4.Snowflake for data transformation and Data warehousing.
-![System Architecture](Screenshot%202024-02-27%20101739.png)
 
-The architecture outlines the data flow from source (Wikipedia) to destination (Azure Data Lake), detailing each step of the process including data scraping, cleaning, and transformation, managed and orchestrated by Apache Airflow.
+
 
 ## Requirements
 - Python 3.9
