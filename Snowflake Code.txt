@@ -1,0 +1,100 @@
+REDDIT_DATA.PUBLIC.REDDIT_PIPELINE_DATA
+create or replace storage integration s3_int
+TYPE = EXTERNAL_STAGE
+STORAGE_PROVIDER = S3
+ENABLED = TRUE
+STORAGE_AWS_ROLE_ARN= 'YOUR__AWS_ROLE_ARN'
+STORAGE_ALLOWED_LOCATIONS = ('YOUR_STORAGE_ALLOWED_LOCATION')
+COMMENT = 'REDDIT DATA STORAGE '
+
+DESC integration s3_int;
+
+
+DESC integration s3_int;
+
+
+CREATE or REPLACE TABLE reddit_pipeline_data1 (
+    id VARCHAR(255),
+    title VARCHAR(500),
+    score INTEGER,
+    num_comments INTEGER,
+    author VARCHAR(255),
+    created_utc VARCHAR(255),
+    url VARCHAR(1000),
+    over_18 BOOLEAN,
+    edited BOOLEAN,
+    spoiler BOOLEAN,
+    stickied BOOLEAN
+);
+
+
+CREATE OR REPLACE FILE FORMAT csv_fileformat
+  TYPE = 'CSV'
+  FIELD_DELIMITER = ','
+  SKIP_HEADER = 1, -- Optional, depending on your CSV structure
+  NULL_IF = ('NULL', 'null'),
+  EMPTY_FIELD_AS_NULL = TRUE;
+
+
+
+
+
+CREATE OR REPLACE stage csv_folder
+  URL='YOUR_S3_BUCKET_URL'
+  STORAGE_INTEGRATION = s3_int
+  FILE_FORMAT = csv_fileformat;
+
+
+
+
+COPY INTO REDDIT_PIPELINE_DATA1
+   FROM @csv_folder
+   ON_ERROR = 'CONTINUE';
+
+
+
+SELECT * FROM REDDIT_PIPELINE_DATA1;
+
+ALTER TABLE REDDIT_PIPELINE_DATA1
+DROP COLUMN edited;
+
+ALTER TABLE REDDIT_PIPELINE_DATA1
+DROP COLUMN spoiler;
+
+
+ALTER TABLE REDDIT_PIPELINE_DATA
+DROP COLUMN stickied;
+
+
+SELECT TITLE 
+FROM REDDIT_PIPELINE_DATA1
+ORDER BY NUM_COMMENTS DESC
+LIMIT 5;
+
+
+
+SELECT TITLE 
+FROM REDDIT_PIPELINE_DATA1
+ORDER BY SCORE DESC
+LIMIT 5;
+
+
+SELECT TITLE 
+FROM REDDIT_PIPELINE_DATA1
+WHERE TITLE LIKE '%Good%';
+
+
+
+--SNOWPIPE
+
+
+
+
+CREATE PIPE pipes.reddit_pipe
+auto_ingest =  TRUE
+AS
+COPY INTO redditfile_pipe
+from @csv_folder
+
+
+
